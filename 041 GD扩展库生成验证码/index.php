@@ -11,18 +11,19 @@ $image = imagecreatetruecolor(50, 25);
 $write = imagecolorallocate($image, 255, 255, 255);
 imagefill($image, 0, 0, $write);
 
-// 填验证码
-$red = imagecolorallocate($image, 255, 0, 0);
 // 生成验证码
 $str = "0123456789";
-$ans_str = "";
+$code = "";
 for ($i = 0; $i < 6; ++ $i) {
-    $ans_str .= $str[rand(0, strlen($str))];
+    $code .= $str[rand(0, strlen($str))];
 }
-// 将字符串填写到图像资源中
-imagestring($image, 1, 0, 0, $ans_str, $red);
+print_r($code);
 
+// 填验证码
+$red = imagecolorallocate($image, 255, 0, 0);
+imagestring($image, 1, 0, 0, $code, $red);
+
+// 将字符串填写到图像资源中
 imagepng($image, 'code.png');
 imagedestroy($image);
-
 
